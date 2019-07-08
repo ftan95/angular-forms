@@ -1,21 +1,108 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-12 col-md-8 form-box">
+      <form [formGroup] = "signupForm" (ngSubmit) = "onSubmit()">
 
-<router-outlet></router-outlet>
+        <div class="form-group">
+          <label for="accountType">Account Type</label>
+          <div class="radio" *ngFor="let type of accountType">
+            <input 
+            type = "radio"
+            formControlName = "accountType" 
+            [value] = "type"> {{ type }}
+          </div>
+          <span *ngIf="!signupForm.get('accountType').valid && signupForm.get('accountType').touched"
+                 class = "form-text text-muted">Please choose an account type</span>
+        </div>
+
+
+        <div class = "row">
+            <div class="form-group col-12 col-md-6">
+                <label for="name">Name</label>
+                <input
+                 type="text"
+                 formControlName = "name"  
+                 id = "name"
+                 class="form-control">
+                 <span *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
+                 class = "form-text text-muted">Please enter a name</span>
+              </div>
+      
+              <div class="form-group col-12 col-md-6">
+                  <label for="email">Email</label>
+                  <input
+                   type="text"
+                   formControlName = "email" 
+                   id = "email"
+                   class="form-control">
+                   <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
+                 class = "form-text text-muted">Please enter a valid email</span>
+                </div>
+        </div>
+       
+        <div class="row">
+            <div class="form-group col-12 col-md-6">
+                <label for="streetAddress">Street Address</label>
+                <input
+                 type="text"
+                 formControlName = "streetAddress" 
+                 id = "streetAddress"
+                 class="form-control">
+                 <span *ngIf="!signupForm.get('streetAddress').valid && signupForm.get('streetAddress').touched"
+                 class = "form-text text-muted">Please enter a Street Address</span>
+              </div>
+  
+              <div class="form-group col-12 col-md-6">
+                  <label for="city">City</label>
+                  <input
+                   type="text"
+                   formControlName = "city" 
+                   id = "city"
+                   class="form-control">
+                   <span *ngIf="!signupForm.get('city').valid && signupForm.get('city').touched"
+                 class = "form-text text-muted">Please enter a city</span>
+                </div>
+        </div>
+         
+
+              <div class="form-group">
+                  <label for="country">Country</label>
+                  <select
+                   type="text"
+                   formControlName = "country" 
+                   id = "country"
+                   class="form-control"
+                   placeholder = "Select Country">
+                   <option>Singapore</option>
+                   <option>All other</option>
+                  </select>
+                  <span *ngIf="!signupForm.get('country').valid && signupForm.get('country').touched"
+                 class = "form-text text-muted">Please click a country</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="zipCode">Zip Code</label>
+                    <input
+                     type="text"
+                     formControlName = "zipCode" 
+                     id = "zipCode"
+                     class="form-control">
+                     <span *ngIf="!signupForm.get('zipCode').valid && signupForm.get('zipCode').touched"
+                 class = "form-text text-muted">Please enter a valid zip code</span>
+                  </div>
+
+                <div class="row ml-1 mb-2">
+                    <button class = "btn btn-primary" type = "submit" [disabled] = "!signupForm.valid">
+                        Submit
+                      </button>
+                </div>
+                
+                <div class="row ml-1">
+                    <button class = "btn btn-danger" type = "button" (click) = "onReset()">
+                        Reset
+                      </button>
+                </div>
+      </form>
+  </div>
+  </div>
+</div>
