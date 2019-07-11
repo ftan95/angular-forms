@@ -130,17 +130,16 @@
           </div>
   
         <!--Feedback-->
-        <!--Feedback button doesn't work when wanting to close the elements-->
         <div class="form-group row ml-3">
             <label for="feedback">Give Feedback</label>
             <div class="ml-2 mr-2">
               <input type="checkbox" (click) = "secondApp()">
             </div>
             <p>Yes</p>
-          </div>
+        </div>
 
         <!--Drop Down-->
-        <div id = "secondBox">
+        <div #secondBox id = "secondBox">
             <div class="form-group row ml-3">
                 <label for="feedback">Short Description</label>
                 <div class="ml-2">
@@ -156,7 +155,7 @@
                 <p>Yes</p>
               </div>
     
-            <div id = "thirdBox">
+            <div #thirdBox id = "thirdBox">
               <div class="form-group row ml-3">
                   <label for="feedback">Detailed Description</label>
                   <div class="ml-2">
@@ -165,6 +164,7 @@
                 </div>
             </div>
     
+            <!--Star Rating-->
             <div class="form-group row ml-3">
                 <label for="rating">Give us a rating</label>
                 <div class="ml-2">
@@ -178,16 +178,16 @@
                 </div>
               </div>
     
+            <!--Thumbs up/down-->
             <div class="form-group row ml-3">
                 <label for="rating">Our Service?</label>
                 <div class="ml-2">
-                  <!--use directive to choose either/or-->
                   <i class = "fa fa-thumbs-up check" appThumbs id = "up" (click) = "selectUp()"></i>
                   <i class = "fa fa-thumbs-down check" appThumbs id = "down" (click) = "selectDown()"></i>
                 </div>
               </div>
             
-            <!--How to make only one button be clicked?-->
+            <!--Satisfactory Table-->
             <div class = "form-group row ml-3">
               <table style = "width: 100%">
                 <tr>
@@ -200,19 +200,19 @@
                 </tr>
                 <tr>
                   <th>Efficiency</th>
-                  <th><input type = "radio" value = "Terrible"></th>
-                  <th><input type = "radio" value = "Fair"></th>
-                  <th><input type = "radio" value = "Satisfactory"></th>
-                  <th><input type = "radio" value = "Good"></th>
-                  <th><input type = "radio" value = "Excellent"></th>
+                  <th><input type = "radio" name = "efficiency" value = "Terrible"></th>
+                  <th><input type = "radio" name = "efficiency" value = "Fair"></th>
+                  <th><input type = "radio" name = "efficiency" value = "Satisfactory"></th>
+                  <th><input type = "radio" name = "efficiency" value = "Good"></th>
+                  <th><input type = "radio" name = "efficiency" value = "Excellent"></th>
                 </tr>
                 <tr>
                   <th>Quality</th>
-                  <th><input type = "radio" value = "Terrible"></th>
-                  <th><input type = "radio" value = "Fair"></th>
-                  <th><input type = "radio" value = "Satisfactory"></th>
-                  <th><input type = "radio" value = "Good"></th>
-                  <th><input type = "radio" value = "Excellent"></th>
+                  <th><input type = "radio" name = "quality" value = "Terrible"></th>
+                  <th><input type = "radio" name = "quality" value = "Fair"></th>
+                  <th><input type = "radio" name = "quality" value = "Satisfactory"></th>
+                  <th><input type = "radio" name = "quality" value = "Good"></th>
+                  <th><input type = "radio" name = "quality" value = "Excellent"></th>
                 </tr>
               </table>
             </div>
@@ -229,34 +229,37 @@
           </div>
 
         <!--Human Check-->
-        <!--Unable to check if the answer to the two numbers are correct-->
         <div class = "form-group row ml-3">
           <label for="humanCheck">Human Check</label>
-          <div class = "ml-2 mr-2" id = "math">
+          <div class = "ml-2 mr-2">
             <p>{{ fNum }} + {{ SNum }} =</p>
             <input
-              (keyup.enter) = "onEnter(num.value)"
+              (keydown) = "answer($event)"
               placeholder="Enter Sum"
               type="text"
               formControlName = "num"  
               id = "num"
+              #num
               class="form-control">
               <span *ngIf="!signupForm.get('num').valid && signupForm.get('num').touched"
-              class = "form-text text-muted">Please enter the correct sum</span>
+              class = "form-text text-muted">Please enter a number</span>
+              <span #math id = "math"></span>
           </div>
         </div>
 
-        <div class="row ml-2 mb-2">
+        <!--Submit-->
+        <div class="row ml-1 mb-2">
             <button class = "btn btn-primary" type = "submit" [disabled] = "!signupForm.valid">
                 Submit
               </button>
         </div>
-                
-        <!-- <div class="row ml-1">
+            
+        <!--Reset-->
+        <div class="row ml-1">
             <button class = "btn btn-danger" type = "button" (click) = "onReset()">
                 Reset
               </button>
-        </div> -->
+        </div>
       </form>
   </div>
   </div>
