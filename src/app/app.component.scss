@@ -10,9 +10,37 @@
 }
 
 input, select {
+    border: transparent;
+    border-bottom: 1px solid #74baf5;
     &.ng-invalid {
         &.ng-touched {
             border: 1px solid red;
         }
     }
+}
+
+li {
+    list-style: none;
+}
+
+#book {
+    margin-left: 10px;
+}
+
+.check {
+    margin: 10px;
+}
+
+th {
+    border-right: 1px solid #74baf5;
+    border-bottom: 1px solid #74baf5;
+    text-align: center;
+}
+
+#secondBox {
+    display: none;
+}
+
+#thirdBox {
+    display: none;
 }

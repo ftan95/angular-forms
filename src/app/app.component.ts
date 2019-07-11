@@ -7,24 +7,71 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'angular-form';
-  accountType = ['Personal', 'Business'];
+
   signupForm: FormGroup;
+
+  public test:number;
+
+  secondApp() {
+    let sec = document.getElementById("secondBox");
+    sec.style.display = "inline-block";
+  }
+
+  thirdApp() {
+    let tri = document.getElementById("thirdBox");
+    tri.style.display = "inline-block";
+  }
+
+  public fNum: number = Math.floor((Math.random() * 10) + 1);
+  public SNum: number = Math.floor((Math.random() * 10) + 1);
+
+  value: number = 0;
+  total: number = 0;
+  onEnter(value: number) {
+    this.value = value;
+    this.total = this.fNum + this.SNum;
+    if (this.total != this.value) {
+      let see = document.getElementById("math") as HTMLElement;
+      see.innerHTML = '<span class = "form-text text-muted">Please enter the correct sum</span>'
+    }
+  }
+
+  validateQuantity(): void {
+    console.log(this.signupForm.value);
+    let quantity = this.signupForm.value.quantity.toString();
+    quantity.replace(/\D+/g, '');
+    this.signupForm.controls.quantity.setValue(+quantity);
+  }
+
+  selectUp() {
+    let test = document.getElementById("down") as HTMLElement;
+    test.style.color = "#555";
+  }
+
+  selectDown() {
+    let test = document.getElementById("up") as HTMLElement;
+    test.style.color = "#555";
+  }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      'accountType': new FormControl("Personal", Validators.required),
       'name': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'streetAddress': new FormControl(null, Validators.required),
-      'city': new FormControl(null, Validators.required),
-      'country': new FormControl(null, Validators.required),
-      'zipCode': new FormControl(null, [Validators.pattern("[0-9]*"), Validators.maxLength(6)]),
+      'website': new FormControl(null, Validators.required),
+      'color': new FormControl(null, Validators.required),
+      'quantity': new FormControl(null, Validators.required),
+      'device': new FormControl(null, Validators.required),
+      'price': new FormControl(null, Validators.required),
+      'agree': new FormControl(null, Validators.required),
+      'num': new FormControl(null, Validators.required)
     });
 
     //Subscribe to value changes
     this.signupForm.valueChanges.subscribe(
-      (value) => console.log(value)
+      (value) => { 
+        // console.log(value);
+        // console.log(this.signupForm.value);
+      }
     );
 
     //Subscribe to status changes
@@ -33,20 +80,20 @@ export class AppComponent implements OnInit{
     );
 
     //Set form values
-    this.signupForm.setValue({
-      'accountType': 'Personal',
-      'name': 'Fred',
-      'email': 'ftan@example.com',
-      'streetAddress': '1212 some street',
-      'city': 'Modesto',
-      'country': 'Singapore',
-      'zipCode': '888888'
-    });
+    // this.signupForm.setValue({
+    //   'accountType': 'Personal',
+    //   'name': 'Fred',
+    //   'email': 'ftan@example.com',
+    //   'website': '1212 some street',
+    //   'city': 'Modesto',
+    //   'device': 'Singapore',
+    //   'zipCode': '888888'
+    // });
 
     //Update/path form values
-    this.signupForm.patchValue({
-      'email': 'kerping_tan@hotmail.com'
-    });
+    // this.signupForm.patchValue({
+    //   'email': 'kerping_tan@hotmail.com'
+    // });
   }
 
 
@@ -54,7 +101,13 @@ export class AppComponent implements OnInit{
     console.log(this.signupForm);
   }
 
-  onReset() {
-    this.signupForm.reset();
+  onPress(event) {
+    if (event.key === "e") {
+      event.preventDefault();
+    }
   }
+
+  // onReset() {
+  //   this.signupForm.reset();
+  // }
 }

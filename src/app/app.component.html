@@ -2,106 +2,261 @@
   <div class="row justify-content-md-center">
     <div class="col-12 col-md-8 form-box">
       <form [formGroup] = "signupForm" (ngSubmit) = "onSubmit()">
+        <label>Conditional Forms</label>
 
-        <div class="form-group">
-          <label for="accountType">Account Type</label>
-          <div class="radio" *ngFor="let type of accountType">
-            <input 
-            type = "radio"
-            formControlName = "accountType" 
-            [value] = "type"> {{ type }}
-          </div>
-          <span *ngIf="!signupForm.get('accountType').valid && signupForm.get('accountType').touched"
-                 class = "form-text text-muted">Please choose an account type</span>
-        </div>
-
-
+        <!--Name & Email-->
         <div class = "row">
-            <div class="form-group col-12 col-md-6">
-                <label for="name">Name</label>
-                <input
-                 type="text"
-                 formControlName = "name"  
-                 id = "name"
-                 class="form-control">
-                 <span *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
-                 class = "form-text text-muted">Please enter a name</span>
-              </div>
-      
-              <div class="form-group col-12 col-md-6">
-                  <label for="email">Email</label>
-                  <input
-                   type="text"
-                   formControlName = "email" 
-                   id = "email"
-                   class="form-control">
-                   <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
-                 class = "form-text text-muted">Please enter a valid email</span>
+          <div class="col-12 col-md-6">
+              <div class="form-group row ml-3">
+                  <label for="name">Name</label>
+                  <div class = "ml-2">
+                      <input
+                      type="text"
+                      formControlName = "name"  
+                      id = "name"
+                      class="form-control">
+                      <span *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
+                      class = "form-text text-muted">Please enter a name</span>
+                  </div>
                 </div>
+        
+              <div class="form-group row ml-3">
+                  <label for="email">Email</label>
+                  <div class="ml-3">
+                      <input
+                      type="text"
+                      formControlName = "email" 
+                      id = "email"
+                      class="form-control">
+                      <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
+                    class = "form-text text-muted">Please enter a valid email</span>
+                  </div>
+                  <i class = "fa fa-envelope-o"></i>
+                </div>
+          </div> 
         </div>
        
+        <!--Website & Choose Device-->
         <div class="row">
-            <div class="form-group col-12 col-md-6">
-                <label for="streetAddress">Street Address</label>
-                <input
-                 type="text"
-                 formControlName = "streetAddress" 
-                 id = "streetAddress"
-                 class="form-control">
-                 <span *ngIf="!signupForm.get('streetAddress').valid && signupForm.get('streetAddress').touched"
-                 class = "form-text text-muted">Please enter a Street Address</span>
-              </div>
-  
-              <div class="form-group col-12 col-md-6">
-                  <label for="city">City</label>
-                  <input
-                   type="text"
-                   formControlName = "city" 
-                   id = "city"
-                   class="form-control">
-                   <span *ngIf="!signupForm.get('city').valid && signupForm.get('city').touched"
-                 class = "form-text text-muted">Please enter a city</span>
-                </div>
-        </div>
-         
-
-              <div class="form-group">
-                  <label for="country">Country</label>
-                  <select
-                   type="text"
-                   formControlName = "country" 
-                   id = "country"
-                   class="form-control"
-                   placeholder = "Select Country">
-                   <option>Singapore</option>
-                   <option>All other</option>
-                  </select>
-                  <span *ngIf="!signupForm.get('country').valid && signupForm.get('country').touched"
-                 class = "form-text text-muted">Please click a country</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="zipCode">Zip Code</label>
-                    <input
-                     type="text"
-                     formControlName = "zipCode" 
-                     id = "zipCode"
-                     class="form-control">
-                     <span *ngIf="!signupForm.get('zipCode').valid && signupForm.get('zipCode').touched"
-                 class = "form-text text-muted">Please enter a valid zip code</span>
+            <div class="col-12 col-md-6">
+              <div class="form-group row ml-3">
+                  <label for="website">Website</label>
+                  <div class="ml-2">
+                      <input
+                      type="text"
+                      formControlName = "website" 
+                      id = "website"
+                      class="form-control">
+                      <span *ngIf="!signupForm.get('website').valid && signupForm.get('website').touched"
+                      class = "form-text text-muted">Please enter a valid Website</span>
                   </div>
+              </div>
 
-                <div class="row ml-1 mb-2">
-                    <button class = "btn btn-primary" type = "submit" [disabled] = "!signupForm.valid">
-                        Submit
-                      </button>
+              <div class="form-group row ml-3">
+                  <label for="device">Choose Device</label>
+                  <div class="ml-2">
+                      <select
+                      type="text"
+                      formControlName = "device" 
+                      id = "device"
+                      class="form-control"
+                      placeholder = "Mobile">
+                      <option>Mobile</option>
+                      <option>Tablet</option>
+                      <option>PC</option>
+                     </select>
+                     <span *ngIf="!signupForm.get('device').valid && signupForm.get('device').touched"
+                    class = "form-text text-muted">Please click a device</span>
+                  </div>
                 </div>
+            </div>
+        </div>
+
+        <!--Choose Color-->
+        <div class="form-group row ml-3">
+            <label for="color">Choose Color</label>
+                <ul>
+                  <li><input type = "checkbox" formControlName = "color"> Red</li>
+                  <li><input type = "checkbox" formControlName = "color"> Blue</li>
+                  <li><input type = "checkbox" formControlName = "color"> Green</li>
+                </ul>
+               <span *ngIf="!signupForm.get('color').valid && signupForm.get('color').touched"
+              class = "form-text text-muted">Please pick a colour</span>
+          </div>
+
+        <!--Choose Quantity-->
+        <div class="form-group row ml-3">
+            <label for="quantity">Product Quantity</label>
+            <div class="ml-2">
+                <input
+                (keydown) = "onPress($event)"
+                type="number"
+                formControlName = "quantity" 
+                id = "quantity"
+                class="form-control">
+                <span *ngIf="!signupForm.get('quantity').valid && signupForm.get('quantity').touched"
+              class = "form-text text-muted">Please enter a quantity</span>
+            </div>
+          </div>
+
+        <!--Booking Date-->
+        <div class="form-group row ml-3">
+            <label for="book">Booking Date</label>
+            <div class="ml-2">
+              <label for="from">From</label>
+              <input type="date" id = "book">
+                <!-- <span *ngIf="!signupForm.get('quantity').valid && signupForm.get('quantity').touched"
+              class = "form-text text-muted">Please enter a quantity</span> -->
+            </div>
+            <div class="ml-2">
+              <label for="to">To</label>
+              <input type = "date" id = "book">
+            </div>
+          </div>
+
+        <!--Price Range-->
+        <div class="form-group row ml-3">
+            <label for="price">Price Range</label>
+            <div class="ml-2">
+              <input 
+              type="range" 
+              min="1" 
+              max="100" 
+              id="myRange" 
+              formControlName = "price" 
+              class="form-control">
+              <p>Value: {{ signupForm.value.price }}</p>
+            </div>
+          </div>
+  
+        <!--Feedback-->
+        <!--Feedback button doesn't work when wanting to close the elements-->
+        <div class="form-group row ml-3">
+            <label for="feedback">Give Feedback</label>
+            <div class="ml-2 mr-2">
+              <input type="checkbox" (click) = "secondApp()">
+            </div>
+            <p>Yes</p>
+          </div>
+
+        <!--Drop Down-->
+        <div id = "secondBox">
+            <div class="form-group row ml-3">
+                <label for="feedback">Short Description</label>
+                <div class="ml-2">
+                  <textarea rows="5"></textarea>
+                </div>
+              </div>
+    
+            <div class="form-group row ml-3">
+                <label for="feedback">Write More</label>
+                <div class="ml-2 mr-2">
+                  <input type="checkbox" (click) = "thirdApp()">
+                </div>
+                <p>Yes</p>
+              </div>
+    
+            <div id = "thirdBox">
+              <div class="form-group row ml-3">
+                  <label for="feedback">Detailed Description</label>
+                  <div class="ml-2">
+                    <textarea rows="8"></textarea>
+                  </div>
+                </div>
+            </div>
+    
+            <div class="form-group row ml-3">
+                <label for="rating">Give us a rating</label>
+                <div class="ml-2">
+                  <fieldset class = "rating">
+                        <input type = "radio" name = "star" value = "5/5">  5
+                        <input type = "radio" name = "star" value = "4/5">  4
+                        <input type = "radio" name = "star" value = "3/5">  3
+                        <input type = "radio" name = "star" value = "2/5">  2
+                        <input type = "radio" name = "star" value = "1/5">  1
+                  </fieldset>
+                </div>
+              </div>
+    
+            <div class="form-group row ml-3">
+                <label for="rating">Our Service?</label>
+                <div class="ml-2">
+                  <!--use directive to choose either/or-->
+                  <i class = "fa fa-thumbs-up check" appThumbs id = "up" (click) = "selectUp()"></i>
+                  <i class = "fa fa-thumbs-down check" appThumbs id = "down" (click) = "selectDown()"></i>
+                </div>
+              </div>
+            
+            <!--How to make only one button be clicked?-->
+            <div class = "form-group row ml-3">
+              <table style = "width: 100%">
+                <tr>
+                  <th></th>
+                  <th>Terrible</th>
+                  <th>Fair</th>
+                  <th>Satisfactory</th>
+                  <th>Good</th>
+                  <th>Excellent</th>
+                </tr>
+                <tr>
+                  <th>Efficiency</th>
+                  <th><input type = "radio" value = "Terrible"></th>
+                  <th><input type = "radio" value = "Fair"></th>
+                  <th><input type = "radio" value = "Satisfactory"></th>
+                  <th><input type = "radio" value = "Good"></th>
+                  <th><input type = "radio" value = "Excellent"></th>
+                </tr>
+                <tr>
+                  <th>Quality</th>
+                  <th><input type = "radio" value = "Terrible"></th>
+                  <th><input type = "radio" value = "Fair"></th>
+                  <th><input type = "radio" value = "Satisfactory"></th>
+                  <th><input type = "radio" value = "Good"></th>
+                  <th><input type = "radio" value = "Excellent"></th>
+                </tr>
+              </table>
+            </div>
+        </div>
+
+        <!--Agree Terms-->
+        <div class="form-group row ml-3">
+            <div class="ml-2 mr-2">
+              <input type="checkbox" formControlName = "agree">
+            </div>
+            <p>I agree all the terms and conditions</p>
+            <span *ngIf="!signupForm.get('agree').valid && signupForm.get('agree').touched"
+              class = "form-text text-muted">Please pick a colour</span>
+          </div>
+
+        <!--Human Check-->
+        <!--Unable to check if the answer to the two numbers are correct-->
+        <div class = "form-group row ml-3">
+          <label for="humanCheck">Human Check</label>
+          <div class = "ml-2 mr-2" id = "math">
+            <p>{{ fNum }} + {{ SNum }} =</p>
+            <input
+              (keyup.enter) = "onEnter(num.value)"
+              placeholder="Enter Sum"
+              type="text"
+              formControlName = "num"  
+              id = "num"
+              class="form-control">
+              <span *ngIf="!signupForm.get('num').valid && signupForm.get('num').touched"
+              class = "form-text text-muted">Please enter the correct sum</span>
+          </div>
+        </div>
+
+        <div class="row ml-2 mb-2">
+            <button class = "btn btn-primary" type = "submit" [disabled] = "!signupForm.valid">
+                Submit
+              </button>
+        </div>
                 
-                <div class="row ml-1">
-                    <button class = "btn btn-danger" type = "button" (click) = "onReset()">
-                        Reset
-                      </button>
-                </div>
+        <!-- <div class="row ml-1">
+            <button class = "btn btn-danger" type = "button" (click) = "onReset()">
+                Reset
+              </button>
+        </div> -->
       </form>
   </div>
   </div>
